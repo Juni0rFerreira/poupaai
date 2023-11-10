@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:poupaai/common/models/user_model.dart';
@@ -55,7 +54,7 @@ class FirebaseAuthService implements AuthService {
       );
       
       if (result.user != null) {  
-        log(await _auth.currentUser?.getIdToken(true) ?? 'nulo');
+        print(await _auth.currentUser?.getIdToken(true) ?? 'nulo');
         await result.user!.updateDisplayName(name);
         return UserModel(
           name: _auth.currentUser?.displayName,
