@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:poupaai/common/constants/app_colors.dart';
 import 'package:poupaai/common/widget/custom_bottom_app_bar.dart';
