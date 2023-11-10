@@ -45,14 +45,14 @@ exports.registerUser = functions.https.onCall(async (data, context) => {
 });
 
 // SYNC WITH HASURA ON USER CREATE
-exports.processSignUp = functions.auth.user().onCreate(async user => {
+exports.processSignUp = functions.auth.user().onCreate(async (user) => {
 
     const id = user.uid;
     const email = user.email;
     const name = user.displayName || "No Name";
 
     const mutation = `mutation($id: String!, $email: String, $name: String) {
-    insert_users(objects: [{
+    insert_user(objects: [{
         id: $id,
         email: $email,
         name: $name,
@@ -76,7 +76,7 @@ exports.processSignUp = functions.auth.user().onCreate(async user => {
 // SYNC WITH HASURA ON USER DELETE
 exports.processDelete = functions.auth.user().onDelete(async (user) => {
     const mutation = `mutation($id: String!) {
-        delete_users(where: {id: {_eq: $id}}) {
+        delete_user(where: {id: {_eq: $id}}) {
           affected_rows
         }
     }`;
