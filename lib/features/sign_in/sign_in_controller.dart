@@ -41,11 +41,7 @@ class SignInController extends ChangeNotifier {
         throw Exception();
       }
     } catch (e) {
-      _changeState(
-        SignInErrorState(
-          e.toString(),
-        ),
-      );
+      print(e);
     }
   }
 }

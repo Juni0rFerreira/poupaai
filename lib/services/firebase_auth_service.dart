@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:poupaai/common/models/user_model.dart';
@@ -7,8 +6,8 @@ import 'package:poupaai/services/auth_service.dart';
 
 class FirebaseAuthService implements AuthService {
   final _auth = FirebaseAuth.instance;
-  final _function = FirebaseFunctions.instance; 
-  
+  final _function = FirebaseFunctions.instance;
+
   @override
   Future<UserModel> signIn({
     String? name,
@@ -54,13 +53,13 @@ class FirebaseAuthService implements AuthService {
         email: email,
         password: password,
       );
-      
-      if (result.user != null) {  
+
+      if (result.user != null) {
         log(await _auth.currentUser?.getIdToken(true) ?? 'nulo');
         await result.user!.updateDisplayName(name);
         return UserModel(
           name: _auth.currentUser?.displayName,
-          email: _auth.currentUser?.email,  
+          email: _auth.currentUser?.email,
           id: _auth.currentUser?.uid,
         );
       } else {
@@ -79,6 +78,20 @@ class FirebaseAuthService implements AuthService {
   Future<void> signOut() async {
     try {
       await _auth.signOut();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> get userToken async {
+    try {
+      final String token = _auth.currentUser!.getIdToken().toString();
+      if (token.isEmpty) {
+        return token;
+      } else {
+        throw Exception('user not found');
+      }
     } catch (e) {
       rethrow;
     }

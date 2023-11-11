@@ -10,7 +10,6 @@ abstract class TransactionRepository {
 class TransactionRepositoryImpl implements TransactionRepository {
   @override
   Future<void> addTransaction() {
-    // TODO: implement addTransaction
     throw UnimplementedError();
   }
 

@@ -55,10 +55,9 @@ class _SignUpState extends State<SignUp> {
       }
 
       if (_controller.state is SignUpErrorState) {
-        final errorMenssage = _controller.state as SignUpErrorState;
         Navigator.pop(context);
         customModalBottomSheet(context,
-        errorMessage: errorMenssage,
+        errorMessage: "ERRO",
         buttonText: "Tente Novamente.."
         );
       }
@@ -84,10 +83,7 @@ class _SignUpState extends State<SignUp> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16.0),
-          Expanded(
-            flex: 0,
-            child: Image.asset('assets/img/formulario.png'),
-          ),
+          Image.asset('assets/img/formulario.png'),
           const SizedBox(height: 32.0),
           Form(
             key: _formkey,

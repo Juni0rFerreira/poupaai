@@ -15,11 +15,8 @@ class OnboardingPage extends StatelessWidget {
       body: Align(
         child: Column(
           children: [
-            const SizedBox(height: 100),
-            Expanded(
-              flex: 0,
-              child: Image.asset('assets/img/man.png'),
-            ),
+            Container(height: 100),
+            Image.asset('assets/img/man.png'),
             const SizedBox(height: 85.5),
             Text(
               'Spend Smarter',

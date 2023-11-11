@@ -1,5 +1,3 @@
-
-
 import 'package:poupaai/common/models/user_model.dart';
 
 abstract class AuthService {
@@ -17,4 +15,6 @@ abstract class AuthService {
   );
 
   Future<void> signOut();
+
+  Future<String> get userToken;
 }

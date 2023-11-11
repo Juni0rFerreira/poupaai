@@ -39,6 +39,7 @@ class SignUpController extends ChangeNotifier {
           key: "CURRENT_USER",
           value: user.toJson(),
         );
+
         _changeState(SignUpSuccessState());
       } else {
         throw Exception();

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:poupaai/common/constants/app_colors.dart';
 import 'package:poupaai/common/constants/app_text_style.dart';
@@ -26,6 +25,7 @@ class _SignInState extends State<SignIn> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _controller = locator.get<SignInController>();
+  SignInErrorState signInError = SignInErrorState();
 
   @override
   void dispose() {
@@ -49,17 +49,16 @@ class _SignInState extends State<SignIn> {
       if (_controller.state is SignInSuccessState) {
         Navigator.pop(context);
         Navigator.pushNamed(
-                context,
-                NamedRoutes.homeview,
-              );
+          context,
+          NamedRoutes.homeview,
+        );
       }
 
       if (_controller.state is SignInErrorState) {
-        final error = _controller.state as SignInErrorState;
         Navigator.pop(context);
         customModalBottomSheet(
           context,
-          errorMessage: error,
+          errorMessage: signInError,
           buttonText: "Tentar Novamente..",
         );
       }
@@ -74,15 +73,12 @@ class _SignInState extends State<SignIn> {
           const SizedBox(height: 66.0),
           Text(
             'Welcome back!',
-            style: AppTextStyles.mediumText36
-                .copyWith(color: AppColors.greenTwo),
+            style:
+                AppTextStyles.mediumText36.copyWith(color: AppColors.greenTwo),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16.0),
-          Expanded(
-            flex: 0,
-            child: Image.asset('assets/img/login.png'),
-          ),
+          Image.asset('assets/img/login.png'),
           const SizedBox(height: 32.0),
           Form(
             key: _formkey,
@@ -130,13 +126,12 @@ class _SignInState extends State<SignIn> {
             children: [
               Text(
                 'Don’t Have Account?',
-                style:
-                    AppTextStyles.smallText.copyWith(color: AppColors.grey),
+                style: AppTextStyles.smallText.copyWith(color: AppColors.grey),
               ),
               Text(
                 ' Sign Up',
-                style: AppTextStyles.smallText
-                    .copyWith(color: AppColors.greenTwo),
+                style:
+                    AppTextStyles.smallText.copyWith(color: AppColors.greenTwo),
               )
             ],
           ),
